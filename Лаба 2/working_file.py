@@ -1,7 +1,6 @@
 # artyomshutoff
 
 import matplotlib.pyplot as plt
-import numpy as np
 from random import choice
 from itertools import product
 
@@ -22,5 +21,25 @@ abs_error = []
 sq_error = []
 
 for exp_num in x:
-    pass
-    # y_i = sum([choice(all_list)])
+    y_i = 0
+    for _ in range(exp_num):
+        dice = choice(all_list)
+        if dice[0] % 2 and dice[1] % 2:
+            y_i += 1
+    freq = y_i / exp_num
+    abs_error.append(abs(theoretic_prob - freq))
+    sq_error.append((theoretic_prob - freq) ** 2)
+
+fig, axes = plt.subplots(1, 2, figsize=(10, 6))
+
+plt.subplots_adjust(wspace=0.3)
+plt.suptitle(
+    "Зависимость отклонения частоты события от его вероятности от количества испытаний"
+)
+
+axes[0].set_title("Абсолютное отклонение")
+axes[0].plot(x, abs_error)
+axes[1].set_title("Квадратичное отклонение")
+axes[1].plot(x, sq_error)
+
+plt.show()
