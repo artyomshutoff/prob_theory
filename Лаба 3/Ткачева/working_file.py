@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
-def f(x: np.ndarray) -> np.ndarray:
+def f(x):
     return np.cos(np.sqrt(x) - 1) * np.exp(np.sqrt(2 * x)) / np.sqrt(x)
 
 
